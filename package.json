@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-homework-cli",
+  "version": "1.0.0",
+  "description": "nodejs-homework-cli",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanIsaiev/nodejs-homework-cli.git"
+  },
+  "author": "Roman Isaiev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomanIsaiev/nodejs-homework-cli/issues"
+  },
+  "homepage": "https://github.com/RomanIsaiev/nodejs-homework-cli#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
