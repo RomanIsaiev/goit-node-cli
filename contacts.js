@@ -1,22 +1,23 @@
 import { nanoid } from "nanoid";
-
-const fs = require("fs/promises");
-const path = require("path");
+import fs from "fs/promises";
+import path from "path";
 
 const contactsPath = path.resolve("./db/contacts.json");
 
-// TODO: задокументировать каждую функцию
-function listContacts() {
-  return fs.readFile(contactsPath).then((data) => {
+export async function listContacts() {
+  try {
+    const data = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(data);
-    console.log(contacts);
     return contacts;
-  });
+  } catch (error) {
+    console.log(error.message);
+    return [];
+  }
 }
 
-async function getContactById(contactId) {
+export async function getContactById(contactId) {
   try {
-    const data = await fs.readFile(contactsPath);
+    const data = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(data);
     const contact = contacts.find((c) => c.id === contactId);
     return contact || null;
@@ -26,9 +27,9 @@ async function getContactById(contactId) {
   }
 }
 
-async function removeContact(contactId) {
+export async function removeContact(contactId) {
   try {
-    const data = await fs.readFile(contactsPath);
+    const data = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(data);
     const index = contacts.findIndex((contact) => contact.id === contactId);
 
@@ -45,9 +46,9 @@ async function removeContact(contactId) {
   }
 }
 
-async function addContact(name, email, phone) {
+export async function addContact(name, email, phone) {
   try {
-    const data = await fs.readFile(contactsPath);
+    const data = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(data);
 
     const newContact = {
@@ -59,7 +60,11 @@ async function addContact(name, email, phone) {
 
     contacts.push(newContact);
 
-    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+    await fs.writeFile(
+      contactsPath,
+      JSON.stringify(contacts, null, 2),
+      "utf-8"
+    );
 
     return newContact;
   } catch (error) {
@@ -67,5 +72,3 @@ async function addContact(name, email, phone) {
     return null;
   }
 }
-
-module.exports = { listContacts, getContactById, removeContact, addContact };

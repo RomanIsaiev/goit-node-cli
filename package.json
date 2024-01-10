@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "nodejs-homework-cli",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index",
     "dev": "nodemon index"
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/RomanIsaiev/nodejs-homework-cli#readme",
   "dependencies": {
+    "commander": "^11.1.0",
     "nanoid": "^5.0.4"
   },
   "devDependencies": {
